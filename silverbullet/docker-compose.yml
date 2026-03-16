@@ -1,16 +1,27 @@
 services:
   silverbullet:
-    image: zefhemel/silverbullet:latest
-    restart: unless-stopped
+    container_name: silverbullet
     environment:
       - SB_USER=${SB_USER_NAME}:${SB_USER_PASSWORD}
       - SB_PORT=8012
-    volumes:
-      - $HOME/Documents/tech-codex:/space
+    image: zefhemel/silverbullet:latest
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
     ports:
       - 8012:8012
 
+    restart: unless-stopped
+
+    volumes:
+      - $HOME/Documents/tech-codex:/space
+
   watchtower:
-    image: containrrr/watchtower
+    container_name: watchtower
+    command: --cleanup --interval 86400
+    image: nickfedor/watchtower
+
+    restart: unless-stopped
+
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
