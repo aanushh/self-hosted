@@ -1,8 +1,11 @@
 services:
   caddy:
-    image: caddy:2
+    image: ghcr.io/caddybuilds/caddy-cloudflare:2
     container_name: caddy
     restart: unless-stopped
+
+    env_file:
+      - .env
 
     ports:
       - "80:80"
