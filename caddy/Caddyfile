@@ -9,6 +9,10 @@
     }
 }
 
+adguard.aanushh.com {
+    reverse_proxy adguard:3000
+}
+
 convertx.{$DOMAIN} {
     reverse_proxy convertx:3000
 }
