@@ -17,6 +17,10 @@ convertx.{$DOMAIN} {
     reverse_proxy convertx:3000
 }
 
+karakeep.aanushh.com {
+    reverse_proxy karakeep-web:3000
+}
+
 silverbullet.{$DOMAIN} {
     reverse_proxy silverbullet:3000
 }
