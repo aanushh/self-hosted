@@ -13,14 +13,14 @@ adguard.aanushh.com {
     reverse_proxy adguard:3000
 }
 
+bentopdf.{$DOMAIN} {
+    reverse_proxy bentopdf:8080
+}
+
 karakeep.aanushh.com {
     reverse_proxy karakeep-web:3000
 }
 
 silverbullet.{$DOMAIN} {
     reverse_proxy silverbullet:3000
-}
-
-stirlingpdf.{$DOMAIN} {
-    reverse_proxy stirling-pdf:8080
 }
