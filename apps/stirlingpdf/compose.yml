@@ -1,0 +1,19 @@
+services:
+  stirling-pdf:
+    image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
+    container_name: stirling-pdf
+
+    expose:
+      - 8080
+
+    networks:
+      - homelab
+
+    volumes:
+      - $HOME/.stirling-data:/configs
+
+    restart: unless-stopped
+
+networks:
+  homelab:
+    external: true

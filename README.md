@@ -8,6 +8,7 @@ Dictionary of my self-hosted apps.
 - [Caddy](https://caddyserver.com/) - Proxy server for my Home Lab
 - [Karakeep](https://karakeep.app/) - Organize my bookmarks
 - [Silverbullet](https://silverbullet.md/) - Personal knowledge base
+- [StirlingPDF](https://docs.stirlingpdf.com/) - PDF manipulation tool
 
 ## Architecture
 
