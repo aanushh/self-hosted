@@ -1,28 +1,33 @@
 services:
   caddy:
-    image: ghcr.io/caddybuilds/caddy-cloudflare:2
     container_name: caddy
-    restart: unless-stopped
-
     env_file:
       - .env
-
+    image: ghcr.io/caddybuilds/caddy-cloudflare:2
+    networks:
+      - adguard
+      - bentopdf
+      - karakeep
+      - silverbullet
     ports:
       - "80:80"
       - "443:443"
-
+    restart: unless-stopped
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
       - caddy_config:/config
-
-    networks:
-      - homelab
 
 volumes:
   caddy_data:
   caddy_config:
 
 networks:
-  homelab:
+  adguard:
+    external: true
+  bentopdf:
+    external: true
+  karakeep:
+    external: true
+  silverbullet:
     external: true

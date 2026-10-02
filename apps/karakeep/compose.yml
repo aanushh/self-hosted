@@ -9,9 +9,6 @@ services:
       # - /path/to/your/directory:/data
       - $HOME/.karakeep/data:/data
 
-    expose:
-      - 3000
-
     env_file:
       - .env
 
@@ -25,8 +22,8 @@ services:
       DATA_DIR: /data # DON'T CHANGE THIS
 
     networks:
+      - karakeep
       - karakeep-internal
-      - homelab
 
   chrome:
     image: ghcr.io/karakeep-app/karakeep-chrome:release
@@ -58,7 +55,8 @@ volumes:
   data:
 
 networks:
+  karakeep:
+    name: karakeep
   karakeep-internal:
     driver: bridge
-  homelab:
-    external: true
+    internal: true

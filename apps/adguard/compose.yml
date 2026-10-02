@@ -1,20 +1,17 @@
 services:
   adguard:
-    image: adguard/adguardhome:latest
     container_name: adguard
-    restart: unless-stopped
-
+    image: adguard/adguardhome:latest
+    networks:
+      - adguard
     ports:
       - "${HOST_IP}:53:53/tcp"
       - "${HOST_IP}:53:53/udp"
-
+    restart: unless-stopped
     volumes:
       - $HOME/.adguard/work:/opt/adguardhome/work
       - $HOME/.adguard/conf:/opt/adguardhome/conf
 
-    networks:
-      - homelab
-
 networks:
-  homelab:
-    external: true
+  adguard:
+    name: adguard

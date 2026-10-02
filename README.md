@@ -12,19 +12,43 @@ Dictionary of my self-hosted apps.
 
 ## Architecture
 
-```text
-Clients
-  |
-  +--> DNS (AdGuard Home / Cloudflare)
-  |
-  +--> HTTPS
-          |
-          v
-       Caddy
-          |
-          | Docker network: homelab
-          v
-   +------+------+------+
-   |             |      |
-  App A         App B  App C
+```mermaid
+flowchart TB
+    Clients["Clients"]
+
+    Clients -->|DNS| AdGuard["AdGuard Home"]
+    Clients -->|HTTPS| Caddy["Caddy"]
+
+    subgraph Docker["Docker Host"]
+        Caddy
+
+        subgraph Bento["bentopdf network"]
+            BentoPDF["BentoPDF"]
+        end
+
+        subgraph Silver["silverbullet network"]
+            SilverBullet["SilverBullet"]
+        end
+
+        subgraph AdGuardNet["adguard network"]
+            AdGuard
+        end
+
+        subgraph Karakeep["karakeep network"]
+            KarakeepWeb["Karakeep Web"]
+        end
+
+        subgraph KarakeepInternal["karakeep-internal network"]
+            Chrome["Chrome"]
+            Meilisearch["Meilisearch"]
+        end
+    end
+
+    Caddy -->|reverse proxy| BentoPDF
+    Caddy -->|reverse proxy| SilverBullet
+    Caddy -->|reverse proxy| AdGuard
+    Caddy -->|reverse proxy| KarakeepWeb
+
+    KarakeepWeb --> Chrome
+    KarakeepWeb --> Meilisearch
 ```

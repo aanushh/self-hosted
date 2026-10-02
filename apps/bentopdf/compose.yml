@@ -2,15 +2,10 @@ services:
   bentopdf:
     container_name: bentopdf
     image: ghcr.io/alam00000/bentopdf-simple:latest
-
-    expose:
-      - 8080
-
     networks:
-      - homelab
-
+      - bentopdf
     restart: unless-stopped
 
 networks:
-  homelab:
-    external: true
+  bentopdf:
+    name: bentopdf
