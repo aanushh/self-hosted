@@ -4,6 +4,7 @@ services:
     environment:
       - SB_USER=${SB_USER_NAME}:${SB_USER_PASSWORD}
       - SB_PORT=3000
+      - GH_PAT=${GH_PAT:?Set GH_PAT in apps/silverbullet/.env}
     image: zefhemel/silverbullet:latest
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
@@ -12,6 +13,7 @@ services:
     restart: unless-stopped
     volumes:
       - $HOME/Documents/tech-codex:/space
+      - ./git-credential-ghpat:/usr/local/bin/git-credential-ghpat:ro
 
   watchtower:
     container_name: watchtower
