@@ -1,0 +1,43 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/settings/
+
+background: /images/background.jpg
+
+color: zinc
+
+fullWidth: true
+
+headerStyle: clean
+
+hideVersion: true
+
+language: en
+
+layout:
+  - My-Apps:
+      style: row
+      columns: 4
+  - Career:
+      style: column
+  - Community:
+      style: column
+  - Media:
+      style: column
+  - Productivity & Tools:
+      style: column
+  - Shopping:
+      style: column
+
+providers:
+  openweathermap: openweathermapapikey
+  weatherapi: weatherapiapikey
+
+title: Anush's Home
+
+quicklaunch:
+  searchDescriptions: true
+  hideInternetSearch: true
+  showSearchSuggestions: true
+  hideVisitURL: true
+  provider: google # google, duckduckgo, bing, baidu, brave or custom

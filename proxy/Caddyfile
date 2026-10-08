@@ -17,6 +17,10 @@ bentopdf.{$DOMAIN} {
     reverse_proxy bentopdf:8080
 }
 
+homepage.aanushh.com {
+    reverse_proxy homepage:3000
+}
+
 karakeep.aanushh.com {
     reverse_proxy karakeep-web:3000
 }

@@ -1,0 +1,79 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/bookmarks
+
+- Career:
+    - Indeed:
+        - icon: /icons/indeed.svg
+          href: https://www.indeed.com/
+    - Instahyre:
+        - icon: /icons/instahyre.ico
+          href: https://www.instahyre.com/
+    - LinkedIn:
+        - icon: /icons/linkedin.png
+          href: https://www.linkedin.com/
+    - Naukri:
+        - icon: /icons/naukri.ico
+          href: https://www.naukri.com/
+
+- Community:
+    - Discord:
+        - icon: /icons/discord.png
+          href: https://discord.com/app
+    - Reddit:
+        - icon: /icons/reddit.png
+          href: https://reddit.com/
+    - Twitter / X:
+        - icon: /icons/x-light.png
+          href: https://x.com/
+
+- Media:
+    - Amazon Prime:
+        - icon: /icons/amazon-prime-video.png
+          href: https://www.primevideo.com/
+    - Apple TV:
+        - icon: /icons/apple-tv-light.png
+          href: https://tv.apple.com/
+    - Hotstar:
+        - icon: /icons/jiohotstar.png
+          href: https://www.hotstar.com/
+    - Netflix:
+        - icon: /icons/netflix.png
+          href: https://www.netflix.com/browse
+    - YouTube:
+        - icon: /icons/youtube.png
+          href: https://youtube.com/
+    - YouTube Music:
+        - icon: /icons/youtubemusic.svg
+          href: https://music.youtube.com/
+
+- Productivity & Tools:
+    - ChatGPT:
+        - icon: /icons/openai.png
+          href: https://chatgpt.com/
+    - Excalidraw:
+        - icon: /icons/excalidraw.png
+          href: https://excalidraw.com/
+    - Gemini:
+        - icon: /icons/google-gemini.png
+          href: https://gemini.google.com/
+    - Github:
+        - icon: /icons/github-light.png
+          href: https://github.com/aanushh
+    - Gmail:
+        - icon: /icons/gmail.png
+          href: https://mail.google.com/
+    - Google:
+        - icon: /icons/google.png
+          href: https://www.google.com/
+
+- Shopping:
+    - Amazon Shopping:
+        - icon: /icons/amazon.png
+          href: https://www.amazon.in/
+    - Flipkart:
+        - icon: /icons/flipkart.png
+          href: https://www.flipkart.com/
+    - JioMart:
+        - icon: /icons/jiomart.png
+          href: https://www.jiomart.com/

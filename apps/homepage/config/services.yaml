@@ -1,0 +1,21 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/services/
+
+- My-Apps:
+    - AdGuard:
+        href: https://adguard.aanushh.com
+        description: DNS and ad blocking
+        icon: adguard-home.png
+    - BentoPDF:
+        href: https://bentopdf.aanushh.com
+        description: PDF tools
+        icon: bentopdf.png
+    - Karakeep:
+        href: https://karakeep.aanushh.com
+        description: Bookmark manager
+        icon: karakeep.png
+    - SilverBullet:
+        href: https://silverbullet.aanushh.com
+        description: Personal knowledge base
+        icon: silverbullet.png

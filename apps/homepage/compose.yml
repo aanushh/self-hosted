@@ -1,0 +1,18 @@
+services:
+  homepage:
+    container_name: homepage
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: ${HOMEPAGE_ALLOWED_HOSTS}
+    image: ghcr.io/gethomepage/homepage:v2.4.0
+    networks:
+      - homepage
+    restart: unless-stopped
+    volumes:
+      - ./config:/app/config
+      - ./icons:/app/public/icons:ro
+      - ./images:/app/public/images:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+networks:
+  homepage:
+    name: homepage

@@ -1,0 +1,31 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/info-widgets/
+
+- greeting:
+    text_size: xl
+    text: Anush's Home
+
+- resources:
+    cpu: true
+    memory: true
+    disk: /
+    network: true
+
+- search:
+    provider: google
+    target: _blank
+
+- openmeteo:
+    latitude: 11.016
+    longitude: 76.962
+    cache: 30
+    units: metric # or imperial
+    format: # optional, Intl.NumberFormat options
+      maximumFractionDigits: 1
+
+- datetime:
+    text_size: xl
+    format:
+      timeStyle: short
+      hourCycle: h23
