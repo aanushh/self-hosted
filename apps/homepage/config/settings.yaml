@@ -18,16 +18,17 @@ layout:
   - My-Apps:
       style: row
       columns: 4
-  - Career:
-      style: column
-  - Community:
-      style: column
-  - Media:
-      style: column
-  - Productivity & Tools:
-      style: column
-  - Shopping:
-      style: column
+  - Bookmarks:
+      - Career:
+          style: column
+      - Community:
+          style: column
+      - Media:
+          style: column
+      - Productivity & Tools:
+          style: column
+      - Shopping:
+          style: column
 
 providers:
   openweathermap: openweathermapapikey
