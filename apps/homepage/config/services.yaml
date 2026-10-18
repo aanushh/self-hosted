@@ -7,6 +7,13 @@
         href: https://adguard.aanushh.com
         description: DNS and ad blocking
         icon: adguard-home.png
+        widget:
+          type: adguard
+          url: http://adguard:3000
+          # prettier-ignore
+          username: "{{HOMEPAGE_VAR_ADGUARD_USERNAME}}"
+          # prettier-ignore
+          password: "{{HOMEPAGE_VAR_ADGUARD_PASSWORD}}"
     - BentoPDF:
         href: https://bentopdf.aanushh.com
         description: PDF tools
