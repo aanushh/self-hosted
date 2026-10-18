@@ -1,28 +1,33 @@
----
-# For configuration options and examples, please see:
-# https://gethomepage.dev/configs/services/
-
-- My-Apps:
-    - AdGuard:
-        href: https://adguard.aanushh.com
-        description: DNS and ad blocking
+# - Core Systems Bento:
+- Infrastructure & Network:
+    - AdGuard Home:
+        id: adguard-home
+        href: "{{HOMEPAGE_VAR_ADGUARD_PUBLIC_URL}}"
         icon: adguard-home.png
+        description: DNS filtering and privacy protection
+        siteMonitor: "{{HOMEPAGE_VAR_ADGUARD_URL}}"
         widget:
           type: adguard
-          url: http://adguard:3000
-          # prettier-ignore
+          url: "{{HOMEPAGE_VAR_ADGUARD_URL}}"
           username: "{{HOMEPAGE_VAR_ADGUARD_USERNAME}}"
-          # prettier-ignore
           password: "{{HOMEPAGE_VAR_ADGUARD_PASSWORD}}"
-    - BentoPDF:
-        href: https://bentopdf.aanushh.com
-        description: PDF tools
+
+- Quick Launch:
+    - AdGuard Home:
+        href: "{{HOMEPAGE_VAR_ADGUARD_PUBLIC_URL}}"
+        icon: adguard-home.png
+    - Bento PDF:
+        href: "{{HOMEPAGE_VAR_BENTOPDF_PUBLIC_URL}}"
         icon: bentopdf.png
+    - Bitwarden:
+        href: https://vault.bitwarden.com
+        icon: bitwarden.png
+    - Cloudflare:
+        href: https://one.dash.cloudflare.com
+        icon: cloudflared.png
     - Karakeep:
-        href: https://karakeep.aanushh.com
-        description: Bookmark manager
+        href: "{{HOMEPAGE_VAR_KARAKEEP_PUBLIC_URL}}"
         icon: karakeep.png
     - SilverBullet:
-        href: https://silverbullet.aanushh.com
-        description: Personal knowledge base
+        href: "{{HOMEPAGE_VAR_SILVERBULLET_PUBLIC_URL}}"
         icon: silverbullet.png

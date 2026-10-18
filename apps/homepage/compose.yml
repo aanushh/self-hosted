@@ -3,12 +3,16 @@ services:
     container_name: homepage
     environment:
       HOMEPAGE_ALLOWED_HOSTS: ${HOMEPAGE_ALLOWED_HOSTS}
+      HOMEPAGE_VAR_ADGUARD_PUBLIC_URL: ${HOMEPAGE_VAR_ADGUARD_PUBLIC_URL}
+      HOMEPAGE_VAR_ADGUARD_URL: ${HOMEPAGE_VAR_ADGUARD_URL}
       HOMEPAGE_VAR_ADGUARD_USERNAME: ${HOMEPAGE_VAR_ADGUARD_USERNAME}
       HOMEPAGE_VAR_ADGUARD_PASSWORD: ${HOMEPAGE_VAR_ADGUARD_PASSWORD}
+      HOMEPAGE_VAR_BENTOPDF_PUBLIC_URL: ${HOMEPAGE_VAR_BENTOPDF_PUBLIC_URL}
+      HOMEPAGE_VAR_KARAKEEP_PUBLIC_URL: ${HOMEPAGE_VAR_KARAKEEP_PUBLIC_URL}
+      HOMEPAGE_VAR_SILVERBULLET_PUBLIC_URL: ${HOMEPAGE_VAR_SILVERBULLET_PUBLIC_URL}
     image: ghcr.io/gethomepage/homepage:v2.4.0
     networks:
       - homepage
-      - adguard
     restart: unless-stopped
     volumes:
       - ./config:/app/config
@@ -19,6 +23,3 @@ services:
 networks:
   homepage:
     name: homepage
-  adguard:
-    external: true
-    name: adguard
