@@ -2,12 +2,11 @@ theme: dark
 color: slate
 cardBlur: lg
 background: /images/background.jpg
-# backgroundOpacity: 25
 useEqualHeights: true
 hideVersion: true
 target: _blank
 statusStyle: dot
-headerStyle: clean
+headerStyle: boxed
 bookmarksStyle: icons
 language: en
 providers:

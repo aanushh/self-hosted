@@ -1,5 +1,5 @@
-- greeting:
-    text: Anush's Home
+- logo:
+    icon: homepage.png
 - search:
     provider: google
     focus: false
@@ -11,15 +11,18 @@
       dateStyle: medium
       timeStyle: short
 - openmeteo:
-    latitude: 11.016
-    longitude: 76.962
+    latitude: "{{HOMEPAGE_VAR_WEATHER_LATITUDE}}"
+    longitude: "{{HOMEPAGE_VAR_WEATHER_LONGITUDE}}"
     cache: 30
-    units: metric # or imperial
-    format: # optional, Intl.NumberFormat options
+    units: metric
+    font: lg
+    format:
       maximumFractionDigits: 1
-
 - resources:
     cpu: true
     memory: true
     disk: /
-    network: true
+    cputemp: true
+    tempmin: 0
+    tempmax: 100
+    units: imperial
