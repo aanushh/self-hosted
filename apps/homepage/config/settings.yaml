@@ -1,5 +1,5 @@
 theme: dark
-color: slate
+color: zinc
 cardBlur: lg
 background: /images/background.jpg
 useEqualHeights: true
