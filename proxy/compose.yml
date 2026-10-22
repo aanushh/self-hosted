@@ -11,6 +11,7 @@ services:
       - homepage
       - karakeep
       - silverbullet
+      - uptime-kuma
     ports:
       - "80:80"
       - "443:443"
@@ -36,4 +37,6 @@ networks:
   karakeep:
     external: true
   silverbullet:
+    external: true
+  uptime-kuma:
     external: true

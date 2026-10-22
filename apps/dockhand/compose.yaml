@@ -2,9 +2,9 @@ services:
   dockhand:
     container_name: dockhand
     image: fnsys/dockhand:v1.0.54
-    restart: unless-stopped
     networks:
       - dockhand
+    restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - dockhand_data:/app/data

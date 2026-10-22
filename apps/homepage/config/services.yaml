@@ -1,5 +1,17 @@
 # yaml-language-server: $schema=none
 
+- Core Systems:
+    - Uptime Kuma:
+        id: uptime-kuma
+        href: "{{HOMEPAGE_VAR_UPTIME_KUMA_PUBLIC_URL}}"
+        icon: uptime-kuma.png
+        description: Availability monitoring and reporting
+        siteMonitor: "{{HOMEPAGE_VAR_UPTIME_KUMA_PUBLIC_URL}}"
+        widget:
+          type: uptimekuma
+          url: "{{HOMEPAGE_VAR_UPTIME_KUMA_PUBLIC_URL}}"
+          slug: "{{HOMEPAGE_VAR_UPTIME_KUMA_SLUG}}"
+
 - Infrastructure & Network:
     - AdGuard Home:
         id: adguard-home
@@ -55,3 +67,6 @@
     - SilverBullet:
         href: "{{HOMEPAGE_VAR_SILVERBULLET_PUBLIC_URL}}"
         icon: silverbullet.png
+    - Uptime Kuma:
+        href: "{{HOMEPAGE_VAR_UPTIME_KUMA_PUBLIC_URL}}"
+        icon: uptime-kuma.png

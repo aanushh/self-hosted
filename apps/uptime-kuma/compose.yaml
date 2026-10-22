@@ -1,0 +1,13 @@
+services:
+  uptime-kuma:
+    container_name: uptime-kuma
+    image: louislam/uptime-kuma:2
+    networks:
+      - uptime-kuma
+    restart: unless-stopped
+    volumes:
+      - $HOME/.uptime-kuma:/app/data
+
+networks:
+  uptime-kuma:
+    name: uptime-kuma

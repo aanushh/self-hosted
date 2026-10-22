@@ -50,3 +50,9 @@ silverbullet.{$DOMAIN} {
         import proxy-health
     }
 }
+
+uptime.{$DOMAIN} {
+    reverse_proxy uptime-kuma:3001 {
+        import proxy-health
+    }
+}

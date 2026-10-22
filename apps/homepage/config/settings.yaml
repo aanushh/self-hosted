@@ -15,7 +15,7 @@ providers:
 iconStyle: theme
 title: Anush's Home
 layout:
-  Core Systems Bento:
+  Core Systems:
     icon: mdi-shield-crown
     style: row
     columns: 4
