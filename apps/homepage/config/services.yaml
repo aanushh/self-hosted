@@ -61,9 +61,9 @@
     - Dockhand:
         href: "{{HOMEPAGE_VAR_DOCKHAND_PUBLIC_URL}}"
         icon: dockhand.png
-    - Karakeep:
-        href: "{{HOMEPAGE_VAR_KARAKEEP_PUBLIC_URL}}"
-        icon: karakeep.png
+    - Linkding:
+        href: "{{HOMEPAGE_VAR_LINKDING_PUBLIC_URL}}"
+        icon: linkding.png
     - SilverBullet:
         href: "{{HOMEPAGE_VAR_SILVERBULLET_PUBLIC_URL}}"
         icon: silverbullet.png

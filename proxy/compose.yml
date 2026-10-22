@@ -10,6 +10,7 @@ services:
       - dockhand
       - homepage
       - karakeep
+      - linkding
       - silverbullet
       - uptime-kuma
     ports:
@@ -35,6 +36,8 @@ networks:
   homepage:
     external: true
   karakeep:
+    external: true
+  linkding:
     external: true
   silverbullet:
     external: true

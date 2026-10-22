@@ -1,0 +1,15 @@
+services:
+  linkding:
+    container_name: linkding
+    env_file:
+      - .env
+    image: sissbruecker/linkding:1.47.0
+    networks:
+      - linkding
+    volumes:
+      - "$HOME/.linkding:/etc/linkding/data"
+    restart: unless-stopped
+
+networks:
+  linkding:
+    name: linkding

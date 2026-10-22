@@ -33,7 +33,7 @@ dockhand.{$DOMAIN} {
     }
 }
 
-homepage.aanushh.com {
+homepage.{$DOMAIN} {
     reverse_proxy homepage:3000 {
         import proxy-health
     }
@@ -41,6 +41,12 @@ homepage.aanushh.com {
 
 karakeep.aanushh.com {
     reverse_proxy karakeep-web:3000 {
+        import proxy-health
+    }
+}
+
+linkding.{$DOMAIN} {
+    reverse_proxy linkding:9090 {
         import proxy-health
     }
 }
