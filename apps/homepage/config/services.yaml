@@ -10,6 +10,14 @@
           url: "{{HOMEPAGE_VAR_ADGUARD_URL}}"
           username: "{{HOMEPAGE_VAR_ADGUARD_USERNAME}}"
           password: "{{HOMEPAGE_VAR_ADGUARD_PASSWORD}}"
+    - Caddy:
+        id: caddy-home
+        icon: caddy.png
+        description: Web server and Reverse proxy manager
+        siteMonitor: "{{HOMEPAGE_VAR_CADDY_MONITORING_URL}}"
+        widget:
+          type: caddy
+          url: "{{HOMEPAGE_VAR_CADDY_URL}}"
 
 - Quick Launch:
     - AdGuard Home:

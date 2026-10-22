@@ -1,5 +1,11 @@
 {
+    admin 0.0.0.0:2019
     email {$ACME_EMAIL}
+}
+
+(proxy-health) {
+    fail_duration 30s
+    max_fails 2
 }
 
 *.{$DOMAIN} {
@@ -10,21 +16,31 @@
 }
 
 adguard.aanushh.com {
-    reverse_proxy adguard:3000
+    reverse_proxy adguard:3000 {
+        import proxy-health
+    }
 }
 
 bentopdf.{$DOMAIN} {
-    reverse_proxy bentopdf:8080
+    reverse_proxy bentopdf:8080 {
+        import proxy-health
+    }
 }
 
 homepage.aanushh.com {
-    reverse_proxy homepage:3000
+    reverse_proxy homepage:3000 {
+        import proxy-health
+    }
 }
 
 karakeep.aanushh.com {
-    reverse_proxy karakeep-web:3000
+    reverse_proxy karakeep-web:3000 {
+        import proxy-health
+    }
 }
 
 silverbullet.{$DOMAIN} {
-    reverse_proxy silverbullet:3000
+    reverse_proxy silverbullet:3000 {
+        import proxy-health
+    }
 }

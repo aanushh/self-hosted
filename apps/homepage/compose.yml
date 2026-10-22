@@ -12,13 +12,14 @@ services:
       HOMEPAGE_VAR_SILVERBULLET_PUBLIC_URL: ${HOMEPAGE_VAR_SILVERBULLET_PUBLIC_URL}
       HOMEPAGE_VAR_WEATHER_LATITUDE: ${HOMEPAGE_VAR_WEATHER_LATITUDE}
       HOMEPAGE_VAR_WEATHER_LONGITUDE: ${HOMEPAGE_VAR_WEATHER_LONGITUDE}
+      HOMEPAGE_VAR_CADDY_URL: ${HOMEPAGE_VAR_CADDY_URL}
+      HOMEPAGE_VAR_CADDY_MONITORING_URL: ${HOMEPAGE_VAR_CADDY_MONITORING_URL}
     image: ghcr.io/gethomepage/homepage:v2.4.0
     networks:
       - homepage
     restart: unless-stopped
     volumes:
       - ./config:/app/config
-      - ./icons:/app/public/icons:ro
       - ./images:/app/public/images:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
