@@ -7,6 +7,7 @@ services:
     networks:
       - adguard
       - bentopdf
+      - dockhand
       - homepage
       - karakeep
       - silverbullet
@@ -27,6 +28,8 @@ networks:
   adguard:
     external: true
   bentopdf:
+    external: true
+  dockhand:
     external: true
   homepage:
     external: true

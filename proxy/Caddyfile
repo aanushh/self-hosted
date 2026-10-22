@@ -27,6 +27,12 @@ bentopdf.{$DOMAIN} {
     }
 }
 
+dockhand.{$DOMAIN} {
+    reverse_proxy dockhand:3000 {
+        import proxy-health
+    }
+}
+
 homepage.aanushh.com {
     reverse_proxy homepage:3000 {
         import proxy-health

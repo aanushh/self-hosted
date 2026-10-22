@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=none
+
 - Infrastructure & Network:
     - AdGuard Home:
         id: adguard-home
@@ -10,8 +12,20 @@
           url: "{{HOMEPAGE_VAR_ADGUARD_URL}}"
           username: "{{HOMEPAGE_VAR_ADGUARD_USERNAME}}"
           password: "{{HOMEPAGE_VAR_ADGUARD_PASSWORD}}"
+    - Dockhand:
+        id: dockhand
+        href: "{{HOMEPAGE_VAR_DOCKHAND_PUBLIC_URL}}"
+        icon: dockhand.png
+        description: Docker stack and container orchestrator
+        siteMonitor: "{{HOMEPAGE_VAR_DOCKHAND_PUBLIC_URL}}"
+        widget:
+          type: dockhand
+          url: "{{HOMEPAGE_VAR_DOCKHAND_PUBLIC_URL}}"
+          username: "{{HOMEPAGE_VAR_DOCKHAND_USERNAME}}"
+          password: "{{HOMEPAGE_VAR_DOCKHAND_PASSWORD}}"
+          fields: ["running", "total", "pending_updates"]
     - Caddy:
-        id: caddy-home
+        id: caddy
         icon: caddy.png
         description: Web server and Reverse proxy manager
         siteMonitor: "{{HOMEPAGE_VAR_CADDY_MONITORING_URL}}"
@@ -32,6 +46,9 @@
     - Cloudflare:
         href: https://one.dash.cloudflare.com
         icon: cloudflared.png
+    - Dockhand:
+        href: "{{HOMEPAGE_VAR_DOCKHAND_PUBLIC_URL}}"
+        icon: dockhand.png
     - Karakeep:
         href: "{{HOMEPAGE_VAR_KARAKEEP_PUBLIC_URL}}"
         icon: karakeep.png
