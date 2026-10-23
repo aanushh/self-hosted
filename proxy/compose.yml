@@ -9,7 +9,6 @@ services:
       - bentopdf
       - dockhand
       - homepage
-      - karakeep
       - linkding
       - silverbullet
       - uptime-kuma
@@ -34,8 +33,6 @@ networks:
   dockhand:
     external: true
   homepage:
-    external: true
-  karakeep:
     external: true
   linkding:
     external: true

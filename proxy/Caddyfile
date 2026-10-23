@@ -39,12 +39,6 @@ homepage.{$DOMAIN} {
     }
 }
 
-karakeep.aanushh.com {
-    reverse_proxy karakeep-web:3000 {
-        import proxy-health
-    }
-}
-
 linkding.{$DOMAIN} {
     reverse_proxy linkding:9090 {
         import proxy-health
