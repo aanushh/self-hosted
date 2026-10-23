@@ -8,8 +8,12 @@
 - datetime:
     locale: en
     format:
-      dateStyle: medium
-      timeStyle: short
+      weekday: short
+      day: numeric
+      month: short
+      hour: 2-digit
+      minute: 2-digit
+      hour12: false
 - openmeteo:
     latitude: "{{HOMEPAGE_VAR_WEATHER_LATITUDE}}"
     longitude: "{{HOMEPAGE_VAR_WEATHER_LONGITUDE}}"
