@@ -1,38 +1,44 @@
 # Self-Hosted Homelab Runbook
 
+This runbook describes the services and Docker configuration currently represented in this repository. Host-specific values such as `.env` contents, LAN addresses, and persistent data paths must be read from the host; secrets should not be copied into this document.
+
 ## Architecture
 
 ```text
 Clients
   |
-  +--> DNS (AdGuard Home / Cloudflare)
+  +--> DNS --> AdGuard Home (host port 53 TCP/UDP)
   |
   +--> HTTPS
           |
           v
-       Caddy
+       Caddy (host ports 80/443)
           |
-          +--> bentopdf network
-          |       |
-          |     BentoPDF
-          |
-          +--> silverbullet network
-          |       |
-          |     SilverBullet
-          |
-          +--> adguard network
-          |       |
-          |     AdGuard Home
-          |
-          +--> karakeep network
-                  |
-                Karakeep Web
-                  |
-                  +--> karakeep-internal
-                          |
-                          +--> Chrome
-                          +--> Meilisearch
+          +--> adguard network ------> AdGuard Home :3000
+          +--> bentopdf network -----> BentoPDF :8080
+          +--> dockhand network -----> Dockhand :3000
+          +--> homepage network -----> Homepage :3000
+          +--> linkding network -----> Linkding :9090
+          +--> silverbullet network -> SilverBullet :3000
+          +--> uptime-kuma network --> Uptime Kuma :3001
 ```
+
+The routed hostnames are defined in `proxy/Caddyfile`: `adguard.aanushh.com` and the `bentopdf`, `dockhand`, `homepage`, `linkding`, `silverbullet`, and `uptime` subdomains of `DOMAIN`.
+
+### Current repository inventory
+
+| Service      | Compose file                    | Image                                     | Persistent data / host access                                                                   |
+| ------------ | ------------------------------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Caddy        | `proxy/compose.yml`             | `ghcr.io/caddybuilds/caddy-cloudflare:2`  | `caddy_data`, `caddy_config`; publishes host ports 80 and 443                                   |
+| AdGuard Home | `apps/adguard/compose.yml`      | `adguard/adguardhome:latest`              | `$HOME/.adguard/{work,conf}`; publishes `${HOST_IP}:53` TCP and UDP                             |
+| BentoPDF     | `apps/bentopdf/compose.yml`     | `ghcr.io/alam00000/bentopdf-simple:2.8.8` | No persistent volume declared                                                                   |
+| Dockhand     | `apps/dockhand/compose.yaml`    | `fnsys/dockhand:v1.0.54`                  | `dockhand_data`; mounts Docker socket read-write                                                |
+| Homepage     | `apps/homepage/compose.yml`     | `ghcr.io/gethomepage/homepage:v2.4.0`     | `./config`, read-only `./images`; Docker socket read-only                                       |
+| Linkding     | `apps/linkding/compose.yaml`    | `sissbruecker/linkding:1.47.0`            | `$HOME/.linkding`                                                                               |
+| SilverBullet | `apps/silverbullet/compose.yml` | `zefhemel/silverbullet:2.12.0`            | `$HOME/Documents/tech-codex`; mounts `git-credential-ghpat`; Watchtower is defined in this file |
+| Uptime Kuma  | `apps/uptime-kuma/compose.yaml` | `louislam/uptime-kuma:2`                  | `$HOME/.uptime-kuma`                                                                            |
+
+Each app has a dedicated network named after the app (AdGuard's network is `adguard`). Caddy joins all seven app networks. Watchtower is not attached to an app network; its Compose service mounts the Docker socket, and SilverBullet has the Watchtower opt-in label.
 
 ### Network isolation
 
@@ -52,12 +58,10 @@ Caddy
   +--> silverbullet ---> SilverBullet
   |
   +--> adguard --------> AdGuard Home
-  |
-  +--> karakeep -------> Karakeep Web
-                            |
-                            +--> karakeep-internal --> Chrome
-                            |
-                            +--> karakeep-internal --> Meilisearch
+  +--> dockhand --------> Dockhand
+  +--> homepage --------> Homepage
+  +--> linkding --------> Linkding
+  +--> uptime-kuma -----> Uptime Kuma
 ```
 
 The important rule is:
@@ -230,7 +234,9 @@ networks:
     external: true
 ```
 
-For example:
+The current Caddy network list is in `proxy/compose.yml`; add a newly created app network there when adding a routed app. Existing app network names are `adguard`, `bentopdf`, `dockhand`, `homepage`, `linkding`, `silverbullet`, and `uptime-kuma`.
+
+Generic example:
 
 ```yaml
 services:
@@ -239,7 +245,6 @@ services:
       - bentopdf
       - silverbullet
       - adguard
-      - karakeep
 
 networks:
   bentopdf:
@@ -247,8 +252,6 @@ networks:
   silverbullet:
     external: true
   adguard:
-    external: true
-  karakeep:
     external: true
 ```
 
@@ -538,77 +541,7 @@ networks:
 
 If an application has internal dependencies, it can use two networks.
 
-Example:
-
-```text
-Caddy
-  |
-  +--> karakeep
-          |
-          +--> karakeep-internal
-                  |
-                  +--> Chrome
-                  +--> Meilisearch
-```
-
-Example:
-
-```yaml
-services:
-  web:
-    image: ghcr.io/karakeep-app/karakeep:${KARAKEEP_VERSION:-release}
-    container_name: karakeep-web
-    restart: unless-stopped
-
-    volumes:
-      - $HOME/.karakeep/data:/data
-
-    env_file:
-      - .env
-
-    environment:
-      MEILI_ADDR: http://meilisearch:7700
-      BROWSER_WEB_URL: http://chrome:9222
-      DATA_DIR: /data
-
-    networks:
-      - karakeep
-      - karakeep-internal
-
-  chrome:
-    image: ghcr.io/karakeep-app/karakeep-chrome:release
-    restart: unless-stopped
-    init: true
-
-    networks:
-      - karakeep-internal
-
-  meilisearch:
-    image: getmeili/meilisearch:v1.41.0
-    restart: unless-stopped
-
-    volumes:
-      - meilisearch:/meili_data
-
-    networks:
-      - karakeep-internal
-
-volumes:
-  meilisearch:
-
-networks:
-  karakeep:
-    name: karakeep
-
-  karakeep-internal:
-    internal: true
-```
-
-Only `web` joins the `karakeep` network, so Caddy can reach it.
-
-Chrome and Meilisearch remain isolated on `karakeep-internal`.
-
-The `karakeep-internal` network is application-owned and does not need to be declared as external.
+The current repository does not define an application with internal dependency services. For an app that does, give the Caddy-facing service both its app network and the private dependency network, and attach dependencies only to the private network. Use `internal: true` only when the intended isolation has been confirmed for that application.
 
 ---
 

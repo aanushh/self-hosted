@@ -2,13 +2,16 @@
 
 Dictionary of my self-hosted apps.
 
-## List of my self-hosted apps
+## Applications
 
-- [AdGuard](https://adguard.com/en/welcome.html) - DNS & Ad Blocker for my Home Lab
-- [Caddy](https://caddyserver.com/) - Proxy server for my Home Lab
-- [Karakeep](https://karakeep.app/) - Organize my bookmarks
-- [Silverbullet](https://silverbullet.md/) - Personal knowledge base
-- [BentoPDf](https://www.bentopdf.com/docs/) - PDF manipulation tool
+- [AdGuard Home](https://adguard.com/en/welcome.html) - DNS filtering for the homelab
+- [BentoPDF](https://www.bentopdf.com/docs/) - PDF tools
+- [Caddy](https://caddyserver.com/) - Web server and reverse proxy
+- [Dockhand](https://dockhand.pro/) - Manage Docker stacks and containers
+- [Homepage](https://gethomepage.dev/) - Homelab dashboard
+- [Linkding](https://linkding.link/) - Bookmark manager
+- [SilverBullet](https://silverbullet.md/) - Personal knowledge base
+- [Uptime Kuma](https://uptime.kuma.pet/) - Service availability monitoring
 
 ## Architecture
 
@@ -17,13 +20,25 @@ flowchart TB
     Clients["Clients"]
 
     Clients -->|DNS| AdGuard["AdGuard Home"]
-    Clients -->|HTTPS| Caddy["Caddy"]
+    Clients -->|HTTP/HTTPS| Caddy["Caddy"]
 
     subgraph Docker["Docker Host"]
         Caddy
 
         subgraph Bento["bentopdf network"]
             BentoPDF["BentoPDF"]
+        end
+
+        subgraph DockhandNet["dockhand network"]
+            Dockhand["Dockhand"]
+        end
+
+        subgraph HomepageNet["homepage network"]
+            Homepage["Homepage"]
+        end
+
+        subgraph LinkdingNet["linkding network"]
+            Linkding["Linkding"]
         end
 
         subgraph Silver["silverbullet network"]
@@ -34,21 +49,16 @@ flowchart TB
             AdGuard
         end
 
-        subgraph Karakeep["karakeep network"]
-            KarakeepWeb["Karakeep Web"]
-        end
-
-        subgraph KarakeepInternal["karakeep-internal network"]
-            Chrome["Chrome"]
-            Meilisearch["Meilisearch"]
+        subgraph UptimeNet["uptime-kuma network"]
+            UptimeKuma["Uptime Kuma"]
         end
     end
 
     Caddy -->|reverse proxy| BentoPDF
+    Caddy -->|reverse proxy| Dockhand
+    Caddy -->|reverse proxy| Homepage
+    Caddy -->|reverse proxy| Linkding
     Caddy -->|reverse proxy| SilverBullet
     Caddy -->|reverse proxy| AdGuard
-    Caddy -->|reverse proxy| KarakeepWeb
-
-    KarakeepWeb --> Chrome
-    KarakeepWeb --> Meilisearch
+    Caddy -->|reverse proxy| UptimeKuma
 ```
