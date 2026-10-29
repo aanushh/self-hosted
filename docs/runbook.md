@@ -86,7 +86,7 @@ because it is the reverse-proxy ingress.
 - Cloudflare provides authoritative DNS.
 - Caddy obtains wildcard certificates using Cloudflare DNS-01.
 - AdGuard Home provides LAN DNS, filtering, and optional DNS rewrites.
-- Tailscale is preferred for private remote access.
+- Tailscale is the preferred path for private remote access. Public DNS records and router port forwards are not required for Tailscale-only access.
 - Watchtower updates only explicitly opted-in containers.
 - Internal application dependencies may use a separate `internal` Docker network when they should not have external connectivity.
 
@@ -299,6 +299,16 @@ Verify:
 dig <app-subdomain>.<domain>
 dig <app-subdomain>.<domain> @<adguard-ip>
 ```
+
+### Tailscale login check
+
+If a service is unavailable on a mobile device or access from the mini PC is unreliable, check that Tailscale is logged in on the mini PC:
+
+```bash
+tailscale status
+```
+
+If it is not logged in, run `tailscale login` and complete sign-in in the browser.
 
 ### 6. HTTPS
 
