@@ -310,6 +310,28 @@ tailscale status
 
 If it is not logged in, run `tailscale login` and complete sign-in in the browser.
 
+### Tailscale subnet route is no longer advertised
+
+For remote access through Tailscale when app hostnames resolve to the homelab LAN IP, the mini PC must advertise the LAN subnet route and that route must be approved in the Tailscale admin console. Logging out and back in can leave a previously approved route no longer advertised.
+
+Check the DNS rewrite and route advertisement:
+
+```bash
+dig <app-subdomain>.<domain>
+tailscale debug prefs | grep -A3 '"AdvertiseRoutes"'
+```
+
+If DNS resolves the hostname to the homelab LAN IP and `AdvertiseRoutes` is `null` or does not include the LAN subnet, restore the route advertisement. Use the actual LAN subnet for the host; for example, a host address of `192.168.29.12/24` is on `192.168.29.0/24`:
+
+```bash
+sudo tailscale set --advertise-routes=192.168.29.0/24
+tailscale debug prefs | grep -A3 '"AdvertiseRoutes"'
+```
+
+In the Tailscale admin console, approve the route if it is pending. Confirm the route no longer appears as approved-but-not-advertised, then retry the app from a mobile device over cellular with Tailscale connected and Tailscale DNS enabled.
+
+The route advertisement on the mini PC and route approval in the admin console are both required. A missing route can make a remote client unable to reach both the LAN DNS resolver and app hostnames that resolve to a LAN IP, even while Tailscale shows the mini PC as connected.
+
 ### 6. HTTPS
 
 ```bash
